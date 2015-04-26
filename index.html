@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User-Friendly Application for MPH Prediction</title>
+  <meta charset="utf-8">
+  <meta name="description" content="User-Friendly Application for MPH Prediction">
+  <meta name="author" content="Eotoke">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>User-Friendly Application for MPH Prediction</h1>
+    <h2>Based on mtcars dataset</h2>
+    <p>Eotoke<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Problem</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>To predict a value like mph for cars, users often have to go through multiple ways like manual computation or learn R programming. Without a common and shared application, users might also spend additional time and effort repeating their computations.</p>
+
+<p>As such, this potentially will cause problems like </p>
+
+<ul>
+<li>errors</li>
+<li>frustration</li>
+<li>wastage of manpower, time, effort</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Proposed Solution</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>In order to hide the complexities of programming and make prediction repeatable and easy, a Shiny application is developed with user friendly inputs. </p>
+
+<p>Users will only need to adjust the values and their inputs and prediction result is presented in a easy to read table form i.e.</p>
+
+<p>Inputs:</p>
+
+<pre><code>##    hp wt cyl am
+## 1 110  3   4  1
+</code></pre>
+
+<p>Results:</p>
+
+<pre><code>##    mph
+## 1 22.5
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Key Benefits of the Application</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Easy to use User Interface for adjusting of values</li>
+<li>Repeatable Prediction without manual coding or computation</li>
+<li>Sharable Application</li>
+<li>Easy Update of data source and algorithm</li>
+</ol>
+
+<p>Overall, this saves time, effort and maintenance from users and reduces error due to manual computation.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Design behind the application</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Using the mtcars dataset,</p>
+
+<ul>
+<li>Regression is based on regressing mpg with horsepower (hp), weight (wt), transmission (am) and number of cylinders (cyl).</li>
+</ul>
+
+<pre><code class="r">library(datasets)
+data(mtcars)
+fit&lt;-lm(mpg ~ hp + wt + factor(am) + factor(cyl), data=mtcars)
+</code></pre>
+
+<ul>
+<li>Consolidating the values reactively based on user inputs, the predict function is used to predict the mph.</li>
+</ul>
+
+<pre><code class="r">predict(fit,
+        data.frame(&quot;hp&quot;=input$horsepower,&quot;wt&quot;=input$weight,
+                   &quot;cyl&quot;=input$cylinder,&quot;am&quot;=input$am)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Problem'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Proposed Solution'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Key Benefits of the Application'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Design behind the application'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
